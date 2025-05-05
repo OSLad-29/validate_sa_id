@@ -9,4 +9,8 @@ public class ValidateSaIdTest {
     void testValidIdNumber() {
         assertTrue(ValidateSaId.isIdNumberValid("2001014800086"));
     }
+    @Test
+    void testInvalidIdNumber() {
+        assertFalse(ValidateSaId.isIdNumberValid("123")); // Too short
+    }
 }
