@@ -5,13 +5,19 @@ import java.time.format.DateTimeFormatter;
 
 public class ValidateSaId {
     public static boolean isIdNumberValid(String idNumber) {
-        // length check
+        // Null or length check
         if (idNumber == null || idNumber.length() != 13 || !idNumber.matches("\\d+")) {
             return false;
         }
 
         // Date validation
         if (!validateDate(idNumber.substring(0, 6))) {
+            return false;
+        }
+
+        // Citizenship digit
+        char citizenship = idNumber.charAt(10);
+        if (citizenship != '0' && citizenship != '1') {
             return false;
         }
         return false;
