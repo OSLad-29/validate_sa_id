@@ -11,8 +11,15 @@ public class ValidateSaIdTest {
         assertFalse(ValidateSaId.isIdNumberValid("1234")); // Too short
         assertFalse(ValidateSaId.isIdNumberValid("20010148000861234")); // Too long
     }
+
     @Test
     void testNonNumericCharacters() {
         assertFalse(ValidateSaId.isIdNumberValid("20010148000A6"));
+    }
+
+    @Test
+    void testInvalidDate() {
+        assertFalse(ValidateSaId.isIdNumberValid("9902304800086")); // Invalid date (Feb 30)
+        assertFalse(ValidateSaId.isIdNumberValid("0000004800086")); // All zeros
     }
 }
