@@ -11,6 +11,6 @@ public class ValidateSaIdTest {
     }
     @Test
     void testInvalidIdNumber() {
-        assertFalse(ValidateSaId.isIdNumberValid("123")); // Too short
+        assertFalse(ValidateSaId.isIdNumberValid("1234")); // Too short
     }
 }
