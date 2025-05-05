@@ -20,7 +20,7 @@ public class ValidateSaId {
         if (citizenship != '0' && citizenship != '1') {
             return false;
         }
-        return false;
+        return validateChecksum(idNumber);
     }
 
     private static boolean validateDate(String dateStr) {
@@ -43,5 +43,19 @@ public class ValidateSaId {
         } catch (Exception e) {
             return false;
         }
+    }
+    private static boolean validateChecksum(String idNumber) {
+        int sum = 0;
+        for (int i = 0; i < 12; i++) {
+            int digit = Character.getNumericValue(idNumber.charAt(i));
+            if (i % 2 == 0) { // Even index (0-based)
+                sum += digit;
+            } else { // Odd index
+                int doubled = digit * 2;
+                sum += (doubled > 9) ? doubled - 9 : doubled;
+            }
+        }
+        int checksumDigit = Character.getNumericValue(idNumber.charAt(12));
+        return (10 - (sum % 10)) % 10 == checksumDigit;
     }
 }

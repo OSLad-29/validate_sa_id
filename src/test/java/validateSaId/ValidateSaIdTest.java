@@ -27,4 +27,9 @@ public class ValidateSaIdTest {
     void testCitizenshipDigit() {
         assertFalse(ValidateSaId.isIdNumberValid("2001014800286")); // '2' is invalid
     }
+
+    @Test
+    void testChecksum() {
+        assertFalse(ValidateSaId.isIdNumberValid("2001014800087")); // Last digit invalid
+    }
 }
